@@ -1,0 +1,29 @@
+% Exhibit 3 -- requires \usepackage{booktabs, threeparttable}
+\begin{table}[t]
+\centering
+\begin{threeparttable}
+\caption{Who gains and what it costs the state, 2028}
+\label{tab:fiscal}
+\small\setlength{\tabcolsep}{4.5pt}
+\begin{tabular}{lrrrrrr}
+\toprule
+ & & \multicolumn{2}{c}{Avg.\ revenue (EUR k)} & \multicolumn{3}{c}{Change in tax revenue (EUR m)} \\
+\cmidrule(lr){3-4}\cmidrule(lr){5-7}
+Group & People & No reform & Reform & Income tax & VAT & Total \\
+\midrule
+Windfall: already at 85--100k & 61{,}720 & 92.7 & 92.7 & $-777$ & $0$ & $\mathbf{-777}$ \\
+Risers: from below 85k & 14{,}050 & 85.0 & 95.0 & $+15$ & $+46$ & $\mathbf{+61}$ \\
+Fallers: from above 100k & 22{,}650 & 113.0 & 100.0 & $-416$ & $-23$ & $\mathbf{-439}$ \\
+\midrule
+Net effect & & & & $-1{,}178$ & $+23$ & $\mathbf{-1{,}155}$ \\
+Behavioural effects as \% of direct cost & & & & & & $-49\%$ \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\footnotesize
+\item \textit{Notes:} Change in tax revenue in 2028 relative to the same people under the old rules. Income tax:
+flat tax, or IRPEF plus regional and municipal add-ons. VAT: net VAT on sales to consumers (VAT on sales to
+businesses is deducted by the buyer). Direct cost = windfall; behavioural effects = risers + fallers. INPS
+contributions excluded; employees reclassified as freelancers not quantified (would add to the cost). Synthetic data.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

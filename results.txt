@@ -1,0 +1,135 @@
+BUNCHING (excess ratio = people just below threshold / expected)
+group  year  ratio_85  ratio_100
+  B2B  2026      1.76       0.75
+  B2B  2028      1.08       1.94
+  B2C  2026      2.26       0.79
+  B2C  2028      2.16       1.82
+
+DiB at 85k: -0.58; placebo DiB 2024->2026: -0.21
+
+PANEL DID (B2B vs B2C, groups fixed on 2023 revenue)
+Stuck 82-85k:
+      beta    se
+2024 -1.12  0.88
+2025 -2.11  0.86
+2026  0.00  0.00
+2027  0.90  0.85
+2028  0.26  0.91
+Placebo 45-50k:
+      beta    se
+2024 -1.38  0.66
+2025 -2.96  0.61
+2026  0.00  0.00
+2027 -2.46  0.61
+2028 -2.41  0.65
+
+Pooled excess ratio at 85k (all groups): {2024: np.float64(1.95), 2026: np.float64(2.04)}
+
+Difference-in-bunching (B2B change - B2C change): {'ratio_85': np.float64(-0.58), 'ratio_100': np.float64(0.16)}
+
+COHORT GROWTH (log points over 2 years; effect = post cohort 2026-28 minus pre cohort 2024-26)
+group   outcome                 band   pre  pre_se  post  post_se  effect  effect_se  n_post
+  B2B  declared Stuck just below 85k 0.047   0.007 0.094    0.006   0.048      0.009   14840
+  B2B  declared      Placebo: 45-50k 0.032   0.005 0.075    0.005   0.043      0.007   24660
+  B2B purchases Stuck just below 85k 0.038   0.008 0.085    0.007   0.046      0.011   14840
+  B2B purchases      Placebo: 45-50k 0.029   0.007 0.078    0.006   0.049      0.009   24660
+  B2C  declared Stuck just below 85k 0.047   0.005 0.084    0.005   0.037      0.007   22290
+  B2C  declared      Placebo: 45-50k 0.012   0.005 0.085    0.005   0.073      0.007   28740
+  B2C purchases Stuck just below 85k 0.010   0.007 0.068    0.006   0.057      0.009   22290
+  B2C purchases      Placebo: 45-50k 0.014   0.006 0.081    0.005   0.067      0.008   28740
+
+CROSSING SHARES (Exhibit 2)
+panel                        label  threshold   pre  pre_se  post  post_se  n_post
+    A                          B2B         85 0.399   0.013 0.646    0.012   14840
+    A                          B2C         85 0.344   0.010 0.439    0.011   22290
+    A Placebo\n(45-50k, cross 50k)         50 0.448   0.007 0.543    0.007   53400
+    B                          B2B        100 0.291   0.012 0.236    0.011   14840
+    B                          B2C        100 0.271   0.010 0.212    0.009   22290
+
+FISCAL TABLE 2028
+                                    people  change_m  extra_rev_m
+cat                                                              
+Already at 85-100k (windfall)        61720    -777.2          0.0
+Fallers: came down from above 100k   22650    -438.9       -294.9
+Risers: from below 85k               14050      61.1        140.2
+
+Direct cost 777m; recovered 61m; lost 439m; net -1155m; recovery share -48.61%
+
+ROBUSTNESS: polynomial degree
+ degree group  ratio_85  ratio_100
+      3   B2B      1.08       1.92
+      3   B2C      2.12       1.77
+      4   B2B      1.08       1.94
+      4   B2C      2.16       1.82
+      5   B2B      1.08       1.91
+      5   B2C      2.16       1.77
+      6   B2B      1.11       2.06
+      6   B2C      2.20       1.87
+
+ROBUSTNESS: placebo threshold
+group  threshold  ratio
+  B2B         70   1.01
+  B2C         70   0.99
+
+ROBUSTNESS: B2B/B2C cutoffs
+cutoffs group  ratio_85  ratio_100
+0.7/0.3   B2B      1.08       1.94
+0.7/0.3   B2C      2.16       1.82
+0.9/0.1   B2B      1.02       1.81
+0.9/0.1   B2C      2.18       1.76
+
+WITHIN-SECTOR BUNCHING (limit 2)
+          sector group  year  people  ratio_85  ratio_100
+   Professionals   B2B  2026  517360      1.77       0.74
+   Professionals   B2B  2028  517360      1.07       1.96
+   Professionals   B2C  2026  205030      2.22       0.81
+   Professionals   B2C  2028  205030      2.19       1.94
+Other activities   B2B  2026  191200      1.76       0.77
+Other activities   B2B  2028  191200      1.14       1.91
+Other activities   B2C  2026  630650      2.27       0.77
+Other activities   B2C  2028  630650      2.16       1.80
+Difference-in-bunching at 100k within sector: {'Professionals': np.float64(0.09), 'Other activities': np.float64(0.11)}
+
+DOSE-RESPONSE among professionals, 2028
+b2b_share  ratio_85  ratio_100
+  0.0-0.2      2.19       1.94
+  0.2-0.4      1.77       1.91
+  0.4-0.6      1.63       2.46
+  0.6-0.8      1.23       2.11
+  0.8-1.0      1.07       1.96
+
+PURCHASES/REVENUE TEST (limit 1): change in log ratio; effect = post cohort - pre cohort
+group    pre   post  effect    se
+  B2B -0.008 -0.010  -0.001 0.006
+  B2C -0.037 -0.017   0.020 0.006
+
+VALIDATION (synthetic truth): share of extra declared revenue that is new activity
+group  extra_declared_m  of_which_new_activity_pct
+  B2B              62.9                       83.2
+  B2C               8.0                        8.1
+
+TRANSITIONS: 2028 bunchers at 95-100k, where they were in 2026 (%)
+declared
+below 80k                28.0
+80-85k (old bunchers)    29.2
+85-100k                  11.0
+100-135k                 25.0
+above 135k                6.8
+
+TRANSITIONS B2B
+declared
+below 80k                     29.9
+80-85k (old bunchers)         28.4
+85-100k                       11.5
+100-135k                      24.6
+above 135k                     5.6
+people in 95-100k, 2028    15760.0
+
+TRANSITIONS B2C
+declared
+below 80k                     26.6
+80-85k (old bunchers)         27.1
+85-100k                       11.5
+100-135k                      26.1
+above 135k                     8.7
+people in 95-100k, 2028    17570.0

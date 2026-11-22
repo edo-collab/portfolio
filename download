@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+data/*.parquet
+latex/*.aux
+latex/*.log
+latex/*.pdf
+latex/*.fls
+latex/*.fdb_latexmk
+.DS_Store

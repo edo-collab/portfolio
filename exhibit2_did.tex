@@ -1,0 +1,42 @@
+% Exhibit 2 -- requires \usepackage{booktabs, threeparttable}
+\begin{table}[t]
+\centering
+\begin{threeparttable}
+\caption{Panel difference-in-differences: B2B vs B2C sellers}
+\label{tab:did}
+\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lcccc}
+\toprule
+ & \multicolumn{3}{c}{Stuck at EUR 82--85k} & Placebo: 45--50k \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-5}
+ & (1) & (2) & (3) & (4) \\
+\midrule
+B2B $\times$ 2024 & $-0.011$ & $0.009$ &  & $0.002$ \\
+ & $(0.009)$ & $(0.010)$ &  & $(0.007)$ \\[2pt]
+B2B $\times$ 2025 & $-0.021^{**}$ & $0.009$ &  & $-0.007$ \\
+ & $(0.009)$ & $(0.010)$ &  & $(0.007)$ \\[2pt]
+B2B $\times$ 2027 & $0.009$ & $0.032^{***}$ &  & $0.000$ \\
+ & $(0.008)$ & $(0.010)$ &  & $(0.007)$ \\[2pt]
+B2B $\times$ 2028 & $0.003$ & $0.028^{***}$ &  & $-0.006$ \\
+ & $(0.009)$ & $(0.011)$ &  & $(0.007)$ \\[2pt]
+B2B $\times$ Post (2027--2028) &  &  & $0.024^{***}$ &  \\
+ &  &  & $(0.008)$ &  \\[2pt]
+\midrule
+Pre-trend test, $p$-value (2024 = 2025 = 0) & 0.05 & 0.57 & & 0.41 \\
+Person fixed effects & Yes & Yes & Yes & Yes \\
+Year fixed effects & Yes & Yes & Yes & Yes \\
+Sector $\times$ year fixed effects & No & Yes & Yes & Yes \\
+People (B2B / B2C) & \multicolumn{3}{c}{12,460 / 19,930} & 24,850 / 28,710 \\
+Observations (person-years) & \multicolumn{3}{c}{161,950} & 267,800 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]\footnotesize
+\item \textit{Notes:} Dependent variable: log declared revenue, 2024--2028. Sample: self-employed who declared
+EUR 82--85k (columns 1--3) or EUR 45--50k (column 4) in 2023, before the reform was announced. Treated: B2B sellers
+(at least 80\% of revenue invoiced to businesses); control: B2C sellers (at most 20\%). Event-study coefficients are
+relative to 2026. Sector $\times$ year fixed effects absorb shocks specific to professionals vs.\ other activities
+(e.g.\ the 2026 energy-price shock on consumer-facing businesses). Standard errors clustered by person in parentheses,
+computed on the 1-in-10 synthetic sample (conservative). $^{***}p<0.01$, $^{**}p<0.05$, $^{*}p<0.1$. Synthetic data.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

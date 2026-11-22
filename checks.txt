@@ -1,0 +1,30 @@
+(1) Flat-tax users by band, tax year 2024: simulated vs Corte dei conti (June 2026)
+   0-20k   sim   938,260   official   936,000   diff +0.2%
+   20-50k  sim   714,360   official   733,830   diff -2.7%
+   50-80k  sim   309,840   official   276,758   diff +12.0%
+   80-85k  sim    66,120   official    81,077   diff -18.4%
+   total   sim 2,028,580   official 2,027,665
+
+(2) Tax arithmetic, checked by hand
+   IRPEF+add-ons on profit 71.76k: code 24.851k, by hand 24.851k
+   Flat tax on 92k revenue (coef 78%): 10.764k -> saving 14.09k
+
+(3) Does the bunching estimate recover the truth? (2026, all groups)
+   people declaring 80-85k: 70,020;  people truly at 80-85k: 35,870;  true excess ratio 1.95
+
+(3b) Share NOT reacting among people truly at EUR 85-100k in 2026 (Kleven & Waseem: 51-86%)
+   B2B: 74% declare their true revenue (do not bunch)
+   B2C: 65% declare their true revenue (do not bunch)
+   all: 68%
+
+(4) Sensitivity of 2028 fiscal effect (EUR million; not recalibrated, so band counts move slightly)
+                                   scenario  windfall  risers  fallers  net_excl_reclass  net_declared_revenue
+                                   baseline    -764.0    63.0   -432.0           -1133.0                -146.0
+                   B2B sellers hide nothing    -764.0    65.0   -427.0           -1126.0                -137.0
+                B2B sellers hide more (25%)    -764.0    60.0   -431.0           -1135.0                -149.0
+stricter enforcement (hiding cost 0.40/EUR)    -764.0    80.0   -426.0           -1110.0                -118.0
+  looser enforcement (hiding cost 0.20/EUR)    -764.0    46.0   -432.0           -1150.0                -167.0
+                less flexible (limits x0.7)    -827.0    27.0   -332.0           -1131.0                 -95.0
+                more flexible (limits x1.3)    -722.0   100.0   -507.0           -1129.0                -205.0
+                      B2C absorb 25% of VAT    -764.0   146.0   -430.0           -1049.0                 -55.0
+                     B2C absorb 100% of VAT    -764.0    24.0   -432.0           -1173.0                -205.0

@@ -1,0 +1,53 @@
+% Exhibit 1 -- requires \usepackage{pgfplots} \usepgfplotslibrary{groupplots} \pgfplotsset{compat=1.17}
+\definecolor{b2b}{HTML}{2A78D6}
+\definecolor{b2c}{HTML}{EB6834}
+\begin{figure}[t]
+\centering
+\caption{Where the self-employed declare their revenue, before and after the reform}
+\label{fig:bunching}
+\begin{tikzpicture}[thr/.style={black, densely dotted, line width=0.6pt},
+                    fitline/.style={black!70, dashed, line width=0.9pt, no markers}]
+\begin{groupplot}[group style={group size=2 by 2, horizontal sep=1.0cm, vertical sep=1.5cm,
+                               xlabels at=edge bottom, ylabels at=edge left},
+                  width=0.46\textwidth, height=4.1cm, xmin=60, xmax=150, ymin=0,
+                  xlabel={Declared revenue (EUR thousand)}, ylabel={People (thousand)},
+                  title style={font=\small, yshift=-1.5ex}, tick label style={font=\scriptsize},
+                  label style={font=\scriptsize}, axis lines=left, enlarge y limits={upper, value=0.08},
+                  ytick distance=5, xtick={60,80,85,100,120,140}, xticklabels={60,80,,100,120,140}]
+\nextgroupplot[title={B2B sellers, 2026 (before reform)}]
+\addplot[ybar interval, fill=b2b, draw=white, line width=0.1pt] table[x=x, y=count, col sep=comma, x expr=\thisrow{x}-0.5] {data/hist_B2B_2026.csv};
+\addplot[fitline] table[x=x, y=fit, col sep=comma] {data/hist_B2B_2026.csv};
+\draw[thr] (axis cs:85,0) -- (axis cs:85,\pgfkeysvalueof{/pgfplots/ymax});
+\node[anchor=north east, align=right, font=\scriptsize] at (rel axis cs:0.98,0.96) {Excess at 85k: 1.8$\times$};
+\nextgroupplot[title={B2B sellers, 2028 (after reform)}]
+\addplot[ybar interval, fill=b2b, draw=white, line width=0.1pt] table[x=x, y=count, col sep=comma, x expr=\thisrow{x}-0.5] {data/hist_B2B_2028.csv};
+\addplot[fitline] table[x=x, y=fit, col sep=comma] {data/hist_B2B_2028.csv};
+\draw[thr] (axis cs:85,0) -- (axis cs:85,\pgfkeysvalueof{/pgfplots/ymax});
+\draw[thr] (axis cs:100,0) -- (axis cs:100,\pgfkeysvalueof{/pgfplots/ymax});
+\node[anchor=north east, align=right, font=\scriptsize] at (rel axis cs:0.98,0.96) {Excess at 85k: 1.1$\times$\\Excess at 100k: 1.9$\times$};
+\nextgroupplot[title={B2C sellers, 2026 (before reform)}]
+\addplot[ybar interval, fill=b2c, draw=white, line width=0.1pt] table[x=x, y=count, col sep=comma, x expr=\thisrow{x}-0.5] {data/hist_B2C_2026.csv};
+\addplot[fitline] table[x=x, y=fit, col sep=comma] {data/hist_B2C_2026.csv};
+\draw[thr] (axis cs:85,0) -- (axis cs:85,\pgfkeysvalueof{/pgfplots/ymax});
+\node[anchor=north east, align=right, font=\scriptsize] at (rel axis cs:0.98,0.96) {Excess at 85k: 2.3$\times$};
+\nextgroupplot[title={B2C sellers, 2028 (after reform)}]
+\addplot[ybar interval, fill=b2c, draw=white, line width=0.1pt] table[x=x, y=count, col sep=comma, x expr=\thisrow{x}-0.5] {data/hist_B2C_2028.csv};
+\addplot[fitline] table[x=x, y=fit, col sep=comma] {data/hist_B2C_2028.csv};
+\draw[thr] (axis cs:85,0) -- (axis cs:85,\pgfkeysvalueof{/pgfplots/ymax});
+\draw[thr] (axis cs:100,0) -- (axis cs:100,\pgfkeysvalueof{/pgfplots/ymax});
+\node[anchor=north east, align=right, font=\scriptsize] at (rel axis cs:0.98,0.96) {Excess at 85k: 2.2$\times$\\Excess at 100k: 1.8$\times$};
+\end{groupplot}
+\end{tikzpicture}
+
+\vspace{0.4ex}
+\begin{minipage}{0.97\textwidth}\footnotesize
+\textit{Difference-in-bunching at EUR 85k} $=(1.08-1.76)-(2.16-2.26)=-0.58$
+(s.e.\ 0.14). Placebo (same calculation, 2024 to 2026, no reform): $-0.21$
+(s.e.\ 0.15). Bootstrap standard errors, 200 resamples of people.\\
+\textit{Notes:} Bars: number of people per EUR 1,000 revenue bin. Dashed line: counterfactual distribution without
+cliffs, a fourth-degree polynomial in log counts fitted outside EUR 80--140k. Excess = people in the EUR 5,000 just
+below a threshold divided by the number predicted by the dashed line. Dotted lines: thresholds (VAT at EUR 85k;
+flat tax at EUR 100k from 2027). B2B: at least 80\% of 2024--2026 revenue invoiced to businesses; B2C: at most 20\%.
+Synthetic data.
+\end{minipage}
+\end{figure}
